@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+	<meta charset="UTF-8">
+	{{if false}}
+	<meta http-equiv="refresh" content="3">{{/*dev mode*/}}
+	{{end}}
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	{{ with .Generator}}<meta name="generator" content="{{.}}">{{ end }}
+	<title>{{.Title}}</title>
+	<link rel="icon" href="data:">
+	<style>html{color-scheme:light dark;background:light-dark(#eee,#222)}</style>
+	<style>body{font:16px/1.6 system-ui,sans-serif}</style>
+	{{with .CSS}}<style>{{. | minifyCSS}}</style>{{end -}}
+	<style>body{max-width:90vw;margin:auto;padding:13vh 2em 2em;text-align:left}</style>
+	<style>img{max-width: 100%;height:auto}</style>
+    <style>body > div.{{.ClassPrefix}}chroma{ margin-bottom: 1rem;}</style>
+	{{range .HeadTags}}{{. | minifyHTML}}{{end -}}
+	<style>.{{.ClassPrefix}}chroma td.{{.ClassPrefix}}lntd:nth-child(1) {opacity: 0.3; border-right: 1px solid !important ;  padding: 0 !important; margin-right: -2px;} </style>
+	<style>body > div > table > tbody > tr > td:nth-child(2) {padding-left: 1rem !important;white-space: pre-wrap; margin-left: 1rem;} </style>
+  </head>
+  <body>
+{{.Body }}
+  </body>
+</html>
