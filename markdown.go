@@ -5,7 +5,6 @@ import (
 	"embed"
 	"io"
 	"io/fs"
-	"os"
 	"strings"
 	"text/template"
 
@@ -20,7 +19,7 @@ import (
 
 var Errorf = stackerr.Errorf
 
-var developing = false
+//var developing = false
 
 //go:embed "default.template.html"
 var embedded embed.FS
@@ -28,11 +27,12 @@ var embedded embed.FS
 // FS that contains "./default.template.html"
 var FS fs.FS = embedded
 
+/*
 func init() {
 	if developing {
 		FS = os.DirFS(".")
 	}
-}
+}*/
 
 const (
 	graffiti  = "oOoOoOo"
