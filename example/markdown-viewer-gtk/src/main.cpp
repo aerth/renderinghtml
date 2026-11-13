@@ -56,14 +56,9 @@ static void activate(GtkApplication *app, gpointer user_data) {
   gtk_window_set_child(GTK_WINDOW(window), GTK_WIDGET(web));
 
   // hook up some buttons
-  WebKitUserContentManager *manager =
-      webkit_web_view_get_user_content_manager(web);
-  webkit_user_content_manager_register_script_message_handler(
-      manager, "nativeApp", nullptr);
-  g_signal_connect(manager,
-                   "script-message-received::nativeApp",
-                   G_CALLBACK(on_message),
-                   window);
+  WebKitUserContentManager *manager = webkit_web_view_get_user_content_manager(web);
+  webkit_user_content_manager_register_script_message_handler(manager, "nativeApp", nullptr);
+  g_signal_connect(manager, "script-message-received::nativeApp", G_CALLBACK(on_message), window);
   gtk_window_set_child(GTK_WINDOW(window), GTK_WIDGET(web));
 
   // librenderinghtml example: html=render_markdown(title,content)
